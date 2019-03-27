@@ -6,7 +6,7 @@ from eden_client_api.api import EdenClientApi as eden
 """ 
     initialize
 """
-api = eden(eden.EDEN_PROTOTYPE_NETWORK)
+api = eden(eden.EDENCHAIN_BETA_RELEASE)
 token = ''
 
 """ 
