@@ -2,6 +2,7 @@
     Eden Client API Samples
 """
 from eden_client_api.api import EdenClientApi as eden
+import getpass
 
 """ 
     initialize
@@ -14,7 +15,7 @@ token = ''
 """
 def authenticate_user():
     id = input("Please input your id : ")
-    pwd = input("Please input your password : ")    
+    pwd = getpass.getpass("Please input your password : ")    
     global token
     token = api.authenticate_user(id,pwd)
 
@@ -31,6 +32,8 @@ def show_menu():
     print(" 4. Get User Transaction")
     print(" 5. Add Eth Address")
     print(" 6. Del Eth Address")
+    print(" 7. Deposit Token")
+    print(" 8. Withdraw Token")
     print("--------------------------")
     print(" Other menu will quit this program")
 
@@ -60,6 +63,21 @@ def run_api_test():
             print("Del Success")
         else:
             print("Del Failed")
+    elif key_value == '7':
+        hash = input("Enter Ethereum Transaction Hash : ")
+        ret = api.deposit_token(token,hash)
+        if ret:
+            print("Deposit Success")
+        else:
+            print("Deposit Failed")
+    elif key_value == '8':
+        addr = input("Enter Ethereum Address : ")
+        amount = input("Enter Token amount to withdraw : ")
+        ret = api.withdraw_token(token,addr,amount)
+        if ret:
+            print("Withdraw Success : txhash - " + ret)
+        else:
+            print("Withdraw Failed")
     else:
         return False
     
