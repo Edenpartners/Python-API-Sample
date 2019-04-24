@@ -7,7 +7,7 @@ import getpass
 """ 
     initialize
 """
-api = eden(eden.EDENCHAIN_BETA_RELEASE)
+api = eden(eden.EDENCHAIN_CANDIDATE_RELEASE)
 token = ''
 
 """ 
@@ -34,6 +34,7 @@ def show_menu():
     print(" 6. Del Eth Address")
     print(" 7. Deposit Token")
     print(" 8. Withdraw Token")
+    print(" 9. Transfer Token")
     print("--------------------------")
     print(" Other menu will quit this program")
 
@@ -76,6 +77,14 @@ def run_api_test():
         ret = api.withdraw_token(token,addr,amount)
         if ret:
             print("Withdraw Success : txhash - " + ret)
+        else:
+            print("Withdraw Failed")
+    elif key_value == '9':
+        addr = input("Enter TEDN Address : ")
+        amount = input("Enter Token amount to transfer : ")
+        ret = api.transfer_token(token,addr,amount)
+        if ret:
+            print("Withdraw Success : tx_id - " + ret)
         else:
             print("Withdraw Failed")
     else:
